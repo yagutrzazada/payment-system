@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: create payments table
+      author: yagutrzazada
+      changes:
+        - createTable:
+            tableName: payments
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: transaction_id
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: from
+                  type: varchar(16)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: to
+                  type: varchar(16)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: amount
+                  type: decimal(16,2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(16)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: timestamp
+                  defaultValue: now()
+              - column:
+                  name: updated_at
+                  type: timestamp
+                  defaultValue: now()
