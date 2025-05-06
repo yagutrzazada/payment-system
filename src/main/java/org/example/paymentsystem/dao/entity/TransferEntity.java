@@ -24,8 +24,8 @@ public class TransferEntity {
     @GeneratedValue(strategy= GenerationType. IDENTITY)
     private Long id;
     private String transactionId;
-    private String from;
-    private String to;
+    private String fromCard;
+    private String toCard;
     private BigDecimal amount;
     @Enumerated(EnumType.STRING)
 
