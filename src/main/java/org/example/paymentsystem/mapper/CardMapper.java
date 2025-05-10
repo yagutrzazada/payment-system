@@ -19,7 +19,7 @@ public interface CardMapper {
      @Mapping(target = "status", constant = "ACTIVE")
 
      CardEntity toCardEntity(CreateCardRequest cardDto);
-    CreateCardRequest toCardDto(CardEntity cardEntity);
+    CreateCardRequest toCardRequest(CardEntity cardEntity);
     @Named("setExpirationDate")
     default LocalDate setExpirationDate(CreateCardRequest cardDto){
         return LocalDate.now().plusYears(cardDto.getExparationYears());
