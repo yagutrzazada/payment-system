@@ -35,12 +35,12 @@ public class TransferService {
                     );
                 });
 
-//        if (senderCardEntity.getStatus() != CardStatus.ACTIVE) {
-//            log.error("ActionLog.doTransfer.error sender card is not active {}", createTransferRequest.getSenderCardNumber());
-//            throw new ForbiddenException(
-//                    CARD_NOT_ACTIVE.getFormattedMessage(createTransferRequest.getSenderCardNumber())
-//            );
-//        }
+        if (!senderCardEntity.getStatus().equals(CardStatus.ACTIVE)) {
+            log.error("ActionLog.doTransfer.error sender card is not active {}", createTransferRequest.getSenderCardNumber());
+            throw new ForbiddenException(
+                    CARD_NOT_ACTIVE.getFormattedMessage(createTransferRequest.getSenderCardNumber())
+            );
+        }
 
         if (senderCardEntity.getBalance().compareTo(createTransferRequest.getAmount()) < 0) {
             log.error("ActionLog.doTransfer.error insufficient balance for card {}", createTransferRequest.getSenderCardNumber());
@@ -57,12 +57,12 @@ public class TransferService {
                     );
                 });
 
-//        if (receiverCardEntity.() != CardStatus.ACTIVE) {
-//            log.error("ActionLog.doTransfer.error receiver card is not active {}", createTransferRequest.getReceiverCardNumber());
-//            throw new ForbiddenException(
-//                    CARD_NOT_ACTIVE.getFormattedMessage(createTransferRequest.getReceiverCardNumber())
-//            );
-//        }
+        if (!receiverCardEntity.getStatus().equals(CardStatus.ACTIVE)) {
+            log.error("ActionLog.doTransfer.error receiver card is not active {}", createTransferRequest.getReceiverCardNumber());
+            throw new ForbiddenException(
+                    CARD_NOT_ACTIVE.getFormattedMessage(createTransferRequest.getReceiverCardNumber())
+            );
+        }
 
         senderCardEntity.setBalance(senderCardEntity.getBalance().subtract(createTransferRequest.getAmount()));
         receiverCardEntity.setBalance(receiverCardEntity.getBalance().add(createTransferRequest.getAmount()));

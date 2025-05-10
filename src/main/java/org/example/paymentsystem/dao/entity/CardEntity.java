@@ -4,6 +4,7 @@ import lombok.NoArgsConstructor;
 import jakarta.persistence.*;
 import lombok.*;
 import org.example.paymentsystem.model.enums.CardType;
+import org.example.paymentsystem.model.enums.TransferStatus;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -26,10 +27,13 @@ public class CardEntity {
     private String holderName;
     private String cardNumber;
     private LocalDate expirationDate;
-    private String CVV;
+    private String cvv;
     @Enumerated(EnumType.STRING)
     private CardType type;
     private BigDecimal balance;
+    @Enumerated(EnumType.STRING)
+
+    private TransferStatus status;
     private String accountNumber;
     @CreationTimestamp
     private LocalDateTime createdAt;
